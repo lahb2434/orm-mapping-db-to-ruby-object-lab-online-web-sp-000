@@ -45,16 +45,15 @@ class Student
     SELECT * 
     FROM students 
     WHERE grade = '10'
-    LIMIT 1
     POP
-    DB[:conn].execute(sql).map{|row| self.new_from_db(row)}
+    DB[:conn].execute(sql).map{|row| self.new_from_db(row)}.first
   end
   
   def self.all_students_in_grade_X(num_X)
     sql = <<-POP 
     SELECT * 
     FROM students 
-    WHERE grade = '?'
+    WHERE grade = ?
     POP
     DB[:conn].execute(sql, num_X).map{|row| self.new_from_db(row)}
   end

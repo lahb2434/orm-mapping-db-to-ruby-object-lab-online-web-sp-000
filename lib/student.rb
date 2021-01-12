@@ -47,7 +47,7 @@ class Student
     WHERE grade = '10'
     POP
     
-    DB[:conn].execute(sql, num_X).map{|row| self.new_from_db(row)}.first
+    DB[:conn].execute(sql).map{|row| self.new_from_db(row)}.first
   end
   
   def self.find_by_name(name)

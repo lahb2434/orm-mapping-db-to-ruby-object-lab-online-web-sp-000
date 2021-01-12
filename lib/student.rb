@@ -30,14 +30,14 @@ class Student
     # self.all.select{|student| student.grade <= 11.to_s}
   end 
   
-  def self.first_X_students_in_grade_10(X)
+  def self.first_X_students_in_grade_10(num_X)
     sql = <<-POP 
     SELECT * 
     FROM students 
     WHERE grade = '10'
     LIMIT ?
     POP
-    DB[:conn].execute(sql, X).map{|row| self.new_from_db(row)}
+    DB[:conn].execute(sql, num_X).map{|row| self.new_from_db(row)}
   end
   
   def self.find_by_name(name)

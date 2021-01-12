@@ -30,6 +30,16 @@ class Student
     # self.all.select{|student| student.grade <= 11.to_s}
   end 
   
+  def self.first_student_in_grade_10
+    sql = <<-POP 
+    SELECT * 
+    FROM students 
+    WHERE grade = '10'
+    LIMIT 1
+    POP
+    DB[:conn].execute(sql).map{|row| self.new_from_db(row)}
+  end
+  
   def self.first_X_students_in_grade_10(num_X)
     sql = <<-POP 
     SELECT * 

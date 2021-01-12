@@ -46,7 +46,6 @@ class Student
     FROM students 
     WHERE grade = '10'
     POP
-    
     DB[:conn].execute(sql).map{|row| self.new_from_db(row)}.first
   end
   
